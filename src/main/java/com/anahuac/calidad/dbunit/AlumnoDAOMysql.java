@@ -54,7 +54,7 @@ public class AlumnoDAOMysql implements AlumnoDAO {
 		boolean result = false;
 		
 		try {
-			preparedStatement = connection.prepareStatement("Delete from alumno_tb1 WHERE id = ?");
+			preparedStatement = connection.prepareStatement("Delete from alumnos_tb1 WHERE id = ?");
 			preparedStatement.setString(1, a.getId());
 			
 			if (preparedStatement.executeUpdate() >= 1)
@@ -75,7 +75,7 @@ public class AlumnoDAOMysql implements AlumnoDAO {
 		boolean result = false;
 		
 		try {
-			preparedStatement = connection.prepareStatement("UPDATE alumno_tb1 set email = ? WHERE id = ?");
+			preparedStatement = connection.prepareStatement("UPDATE alumnos_tb1 set email = ? WHERE id = ?");
 			
 			preparedStatement.setString(1, a.getEmail());
 			preparedStatement.setString(2, a.getId());
@@ -98,7 +98,7 @@ public class AlumnoDAOMysql implements AlumnoDAO {
 		
 		Alumno retrieved = null;
 		try {
-			preparedStatement = connection.prepareStatement("SELECT * from alumno_tb1 WHERE id =  ?");
+			preparedStatement = connection.prepareStatement("SELECT * from alumnos_tb1 WHERE id =  ?");
 			preparedStatement.setString(1, id);
 			rs = preparedStatement.executeQuery();
 			
@@ -108,7 +108,7 @@ public class AlumnoDAOMysql implements AlumnoDAO {
 			String retrievedEmail = rs.getString(3);
 			int retrievedAge = rs.getInt(4);
 			
-			retrieved = new Alumno(retrievedId, retrievedName, retrievedAge, retrievedEmail);
+			retrieved = new Alumno(retrievedId, retrievedName, retrievedEmail, retrievedAge);
 			
 			rs.close();
 			preparedStatement.close();
