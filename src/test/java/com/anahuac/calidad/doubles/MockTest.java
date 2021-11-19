@@ -51,6 +51,12 @@ public class MockTest {
 		assertThat(resultadoEsperado,is(resultadoEjecucion));
 	}
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void mockException_Test() {
+		when(dependency.getClassName()).thenThrow(IllegalArgumentException.class);
+		dependency.getClassName();
+	}
+	
 	@Test
 	public void mockRealTest() {
 		when(dependency.getClassName()).thenCallRealMethod();
